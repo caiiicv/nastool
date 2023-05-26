@@ -1,44 +1,5 @@
-version: '3'
-services:
-  jellyfin:
-    image: jellyfin/jellyfin:latest
-    container_name: jellyfin
-    restart: always
-    ports:
-      - "8096:8096"
-    volumes:
-      - "/docker/jellyfin/config:/config"
-      - "/docker/jellyfin/cache:/cache"
-      - "/docker/media:/media"
-  qbittorrent:
-    image: linuxserver/qbittorrent:latest
-    container_name: qbittorrent
-    restart: always
-    ports:
-      - "6881:6881"
-      - "6881:6881/udp"
-      - "8078:8080"
-    environment:
-      - PUID=0
-      - PGID=0
-      - TZ=Europe/London
-      - WEBUI_PORT=8078
-    volumes:
-      - "/docker/qBittorrent/config:/config"
-      - "/docker/media/Downloads:/downloads"
-  nastool:
-    image: razeencheng/nastool:2.9.1
-    container_name: nastool
-    restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      - PUID=0
-      - PGID=0
-      - UMASK=000
-      - NASTOOL_AUTO_UPDATE=false
-      - NASTOOL_CN_UPDATE=false
-    volumes:
-      - "/docker/Nastool/config:/config"
-      - "/docker/media:/media"
-      - "/docker/qBittorrent/Downloads:/downloads"
+这是一个docker-compose.yml 文件，定义了三个服务：
+Jellyfin：一个流媒体服务器应用程序。
+qbittorrent：一个功能强大、易于使用的BitTorrent客户端。
+Nastool：一种类似于Plex或Emby的自托管影片管理系统。
+这个Docker Compose文件使用了多个常见的设置来配置容器：
